@@ -42,7 +42,12 @@ public class CLI {
             option = input.nextLine().charAt(0);
         }while(option == 's');
 
-        System.out.println("El costo toal por los boletos comprados es de : $" + TicketMachine.getTotal(nKids, nAdults, nElders, getnEldersWCard));
+        System.out.println("Compraste:" +
+                "\n" + nKids + "boletos para niño: " + nKids + "," +
+                "\n" + nAdults + "boletos para adulto: " + nAdults + "," +
+                "\n" + nElders + "boletos para adulto mayor: " + nElders + "," +
+                "\n" + getnEldersWCard + "boletos para adulto mayor con credencial INAPAM: " + getnEldersWCard + "." +
+                "\nEl costo toal por los boletos comprados es de : $" + TicketMachine.getTotal(nKids, nAdults, nElders, getnEldersWCard));
         System.out.println("¡Fin del programa!");
     }
 }
