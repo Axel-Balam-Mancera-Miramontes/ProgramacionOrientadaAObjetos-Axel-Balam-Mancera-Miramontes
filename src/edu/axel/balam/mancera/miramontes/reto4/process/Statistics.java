@@ -44,12 +44,9 @@ public class Statistics {
         for(int i = 0; i < salesTable[0].length; ++i){
             aux = 0;
             for(int j = 0; j < salesTable.length; ++j){
-                System.out.println("Sum " + salesTable[j][i]);
                 aux += salesTable[j][i];
             }
-            System.out.println("MAx = " + aux);
             if(aux > maxSale){
-                System.out.println("CHEEECK");
                 maxSale = aux;
                 trimester = trimesters[i];
             }
