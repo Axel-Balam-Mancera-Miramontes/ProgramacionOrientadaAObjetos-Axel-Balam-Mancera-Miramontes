@@ -1,56 +1,54 @@
-package edu.axel.balam.mancera.miramontes.reto4.process;
+/**
+ * @author Axel Balam Mancera Miramontes
+ */
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+package edu.axel.balam.mancera.miramontes.reto4.process;
 
 /**
  * This class contains the methods to get the statistics of the recorded data.
  */
 public class Statistics {
     /**
-     * Table containing all the recorded sales
+     * getMostSalesPerFlavor gets the trimester in which the given coffee flavor had the most sales.
+     * @param salesTable: array containing the value of the sales for each trimester of the given coffee flavor.
+     * @param trimesters: array containing the name of each trimester.
+     * @return: the name of the trimester in which the given coffee flavor had the most sales.
      */
+    public static String getMostSalesPerFlavor(int[] salesTable, String[] trimesters){
+        int maxSaleFlavor = salesTable[0], maxSaleIndex = 0;
 
-    private final static String coffeeTypes[] = {"Chocolate", "Vainilla", "Fresa", "Oreo"};
-    private final static String trimesters[] = {"Ene-Feb-Mar", "Abr-May-Jun", "Jul-Ago-Sep", "Oct-Nov-Dic"};
-    private final static int salesTable[][] = {
-        {111, 483, 471, 427},
-        {192, 500, 355, 158},
-        {289, 470, 474, 160},
-        {425, 114, 161, 308}
-    };
-
-    public static void getMostSalesForFlavor(){
-        int maxSale, i, j;
-        String trimester;
-        for(i = 0; i < salesTable.length; ++i){
-            maxSale = 0;
-            trimester = "";
-            for(j = 0; j < salesTable[i].length; ++j){
-                if(salesTable[i][j] > maxSale){
-                    maxSale = salesTable[i][j];
-                    trimester = trimesters[j];
-                }
+        for(int i = 1; i < salesTable.length; ++i) {
+            if(salesTable[i] > maxSaleFlavor){
+                maxSaleFlavor = salesTable[i];
+                maxSaleIndex = i;
             }
-            System.out.println("La mayor venta para " + coffeeTypes[i] + " fue en el trimestre " + trimester + "(" + maxSale + " ventas).");
         }
+
+        return trimesters[maxSaleIndex];
     }
 
-    public static void getMostSales() {
-        int maxSale = 0, aux;
-        String trimester = "";
+    /**
+     * getMostSales gets the trimester which had the most total sales.
+     * @param salesTable: table containing the value of the sales for each trimester of each coffee flavor.
+     * @param trimesters: array containing the name of each trimester.
+     * @return: the name of the trimester which had the most sales.
+     */
+    public static String getMostSales(int[][] salesTable, String[] trimesters) {
+        int maxSale = salesTable[0][0];
+        int auxSum;
+        int maxSaleIndex = 0;
+
         for(int i = 0; i < salesTable[0].length; ++i){
-            aux = 0;
+            auxSum = 0;
             for(int j = 0; j < salesTable.length; ++j){
-                aux += salesTable[j][i];
+                auxSum += salesTable[j][i];
             }
-            if(aux > maxSale){
-                maxSale = aux;
-                trimester = trimesters[i];
+            if(auxSum > maxSale){
+                maxSale = auxSum;
+                maxSaleIndex = i;
             }
         }
-        System.out.println("La mayor venta fue en el trimestre " + trimester + " (" + maxSale + " ventas).");
+
+        return trimesters[maxSaleIndex];
     }
 }

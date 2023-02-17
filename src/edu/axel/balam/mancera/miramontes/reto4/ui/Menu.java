@@ -1,3 +1,7 @@
+/**
+ * @author Axel Balam Mancera Miramontes
+ */
+
 package edu.axel.balam.mancera.miramontes.reto4.ui;
 
 import java.util.ArrayList;
@@ -8,8 +12,6 @@ import java.util.Scanner;
  * Menu provides a set of variables and members that outline a template of a user menu.
  */
 public class Menu {
-
-    Scanner input = new Scanner(System.in);
     /**
      * Texts that may appear when interacting with the menu.
      */
@@ -91,6 +93,7 @@ public class Menu {
      * @return option: a number that represents the index of a specific option.
      */
     public int readOption() {
+        Scanner input = new Scanner(System.in);
         while (true) {
             try {
                 int option = input.nextInt();
