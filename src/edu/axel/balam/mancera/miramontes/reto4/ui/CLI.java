@@ -4,10 +4,10 @@
 
 package edu.axel.balam.mancera.miramontes.reto4.ui;
 
-import edu.axel.balam.mancera.miramontes.reto4.process.Statistics;
+import edu.axel.balam.mancera.miramontes.reto4.process.Game;
 
 /**
- * CLI contains all the data tha is going to be processed by the Statistics class.
+ * CLI contains all the data tha is going to be processed by the Game class.
  * CLI defines the details of the user menu and executes it.
  */
 public class CLI {
@@ -52,7 +52,7 @@ public class CLI {
      */
     private static MenuActionPrototype getMostSalesPerFlavor = () -> {
         for(int i = 0; i < salesTable.length; ++i){
-            System.out.printf(MOST_SALES_PER_FLAVOR_OUTPUT, coffeeTypes[i], Statistics.getMostSalesPerFlavor(salesTable[i], trimesters));
+            System.out.printf(MOST_SALES_PER_FLAVOR_OUTPUT, coffeeTypes[i], Game.getMostSalesPerFlavor(salesTable[i], trimesters));
         }
     };
 
@@ -60,7 +60,7 @@ public class CLI {
      * Defines the action that gets the trimester which had the most total sales.
      */
     private static MenuActionPrototype getMostSales = () -> {
-        System.out.printf(MOST_SALES_OUTPUT, Statistics.getMostSales(salesTable, trimesters));
+        System.out.printf(MOST_SALES_OUTPUT, Game.getMostSales(salesTable, trimesters));
     };
 
     /*

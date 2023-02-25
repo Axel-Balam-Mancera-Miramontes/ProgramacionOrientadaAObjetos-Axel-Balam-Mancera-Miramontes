@@ -7,7 +7,7 @@ package edu.axel.balam.mancera.miramontes.reto4.process;
 /**
  * This class contains the methods to get the statistics of the recorded data.
  */
-public class Statistics {
+public class Game {
     /**
      * getMostSalesPerFlavor gets the trimester in which the given coffee flavor had the most sales.
      * @param salesTable: array containing the value of the sales for each trimester of the given coffee flavor.
