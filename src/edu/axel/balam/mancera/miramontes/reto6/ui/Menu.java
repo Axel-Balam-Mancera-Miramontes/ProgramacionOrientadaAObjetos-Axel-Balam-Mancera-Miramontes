@@ -1,19 +1,23 @@
-package edu.axel.balam.mancera.miramontes.CLITemplate.reto4.ui;
+/**
+ * @author Axel Balam Mancera Miramontes
+ */
+
+package edu.axel.balam.mancera.miramontes.reto6.ui;
+
+import edu.axel.balam.mancera.miramontes.reto6.ui.MenuActionPrototype;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
- * Menu provides a set of variables and members that define a template of a user menu.
+ * Menu provides a set of variables and members that outline a template of a user menu.
  */
 public class Menu {
-
-    Scanner input = new Scanner(System.in);
     /**
      * Texts that may appear when interacting with the menu.
      */
-    private String MENU_WELCOME = "Conversor de bases numéricas";
+    private String MENU_WELCOME = "Menú";
     private String REQUEST_OPTION = "Digite el número correspondiente a la opción a elegir: ";
     private String NUMERIC_TYPE_ERROR = "El valor ingresado no posee un formato numérico. Intente de nuevo: ";
     private String OUT_OF_RANGE_ERROR = "Opción no disponible. Intente de nuevo: ";
@@ -91,13 +95,18 @@ public class Menu {
      * @return option: a number that represents the index of a specific option.
      */
     public int readOption() {
+        Scanner input = new Scanner(System.in);
         while (true) {
             try {
                 int option = input.nextInt();
                 input.nextLine();
-                if (option < 1 || option > optionList.size()) {
+                if (option < 0 || option > optionList.size()) {
                     System.out.print(OUT_OF_RANGE_ERROR);
                     continue;
+                }
+                else if(option == 0){
+                    killMenu();
+                    option = optionList.size();
                 }
                 return option;
             } catch (InputMismatchException e) {

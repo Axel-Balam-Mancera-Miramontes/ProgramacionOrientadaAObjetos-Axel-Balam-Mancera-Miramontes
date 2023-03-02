@@ -4,21 +4,19 @@
 
 package edu.axel.balam.mancera.miramontes.reto5.ui;
 
-import edu.axel.balam.mancera.miramontes.reto5.ui.MenuActionPrototype;
-
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
- * Menu provides a set methods that create a user menu.
+ * Menu provides a set of variables and members that outline a template of a user menu.
  */
 public class Menu {
     /**
      * Texts that may appear when interacting with the menu.
      */
     private String MENU_WELCOME = "Menú";
-    private String REQUEST_OPTION = "Digite el número correspondiente al nivel a elegir: ";
+    private String REQUEST_OPTION = "Digite el número correspondiente a la opción a elegir: ";
     private String NUMERIC_TYPE_ERROR = "El valor ingresado no posee un formato numérico. Intente de nuevo: ";
     private String OUT_OF_RANGE_ERROR = "Opción no disponible. Intente de nuevo: ";
     private String END_OF_PROGRAM = "Programa finalizado.";
