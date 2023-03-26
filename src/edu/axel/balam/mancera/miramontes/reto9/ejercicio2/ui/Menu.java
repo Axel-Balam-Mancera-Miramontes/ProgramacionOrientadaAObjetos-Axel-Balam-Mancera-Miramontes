@@ -2,9 +2,7 @@
  * @author Axel Balam Mancera Miramontes
  */
 
-package edu.axel.balam.mancera.miramontes.reto6.ui;
-
-import edu.axel.balam.mancera.miramontes.reto6.ui.MenuActionPrototype;
+package edu.axel.balam.mancera.miramontes.reto9.ejercicio2.ui;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
