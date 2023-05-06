@@ -5,12 +5,12 @@
 package edu.axel.balam.mancera.miramontes.reto5.ui;
 
 /**
- * An instance of the functional interface MenuActionPrototype can be assigned the definition of a lambda function.
+ * An instance of the functional interface Action can be assigned the definition of a lambda function.
  */
 @FunctionalInterface
 public interface MenuActionPrototype {
     /**
-     * definedAction is the prototype of the method that will help initialize an instance of the MenuActionPrototype class as a defined lambda function.
+     * definedAction is the prototype of the method that will help initialize an instance of the Action class as a defined lambda function.
      */
     void definedAction();
 }
