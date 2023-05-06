@@ -2,9 +2,10 @@
  * @author Axel Balam Mancera Miramontes
  */
 
-package edu.axel.balam.mancera.miramontes.reto6.ui;
+package edu.axel.balam.mancera.miramontes.retoFinal.ui;
 
-import edu.axel.balam.mancera.miramontes.reto6.ui.MenuActionPrototype;
+import edu.axel.balam.mancera.miramontes.retoFinal.process.Magician;
+import edu.axel.balam.mancera.miramontes.retoFinal.process.Player;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -14,32 +15,47 @@ import java.util.Scanner;
  * Menu provides a set of variables and members that outline a template of a user menu.
  */
 public class Menu {
+    Player player;
+    Magician magician;
+
     /**
-     * Texts that may appear when interacting with the menu.
+     * Texts that may be shown when interacting with the menu.
      */
-    private String MENU_WELCOME = "Menú";
-    private String REQUEST_OPTION = "Digite el número correspondiente a la opción a elegir: ";
-    private String NUMERIC_TYPE_ERROR = "El valor ingresado no posee un formato numérico. Intente de nuevo: ";
-    private String OUT_OF_RANGE_ERROR = "Opción no disponible. Intente de nuevo: ";
-    private String END_OF_PROGRAM = "Programa finalizado.";
+    private String START_MENU;
+    private String REQUEST_OPTION;
+    private String NUMERIC_TYPE_ERROR;
+    private String OUT_OF_RANGE_ERROR;
+    private String ABANDON_GAME;
 
     /**
      * optionList stores the strings that correspond to the options shown to the user + an exit option.
-     * menuActionPrototypeList stores the functions associated to every option shown to the user but the exit option.
+     * actionList stores the functions associated to every option shown to the user but the exit option.
      */
-    private ArrayList<String> optionList = new ArrayList<>();
-    private ArrayList<MenuActionPrototype> menuActionPrototypeList = new ArrayList<>();
+    private ArrayList<String> optionList;
+    private ArrayList<Action> actionList;
 
     /**
      * alive sets the state of availability of the menu to the user and helps determine whether the menu should keep shown or not.
      */
-    private boolean alive = true;
+    private boolean alive;
 
     /**
-     * killMenu sets that the user menu should stop being shown to the user.
+     * Menu: sets the menu's attributes to their initial values.
      */
-    public void killMenu() {
-        alive = false;
+    public Menu(Player player, Magician magician){
+        this.player = player;
+        this.magician = magician;
+
+        START_MENU = "Menú del jugador";
+        REQUEST_OPTION = "¿Qué desea hacer el jugador? Digite el número correspondiente a la opción a elegir: ";
+        NUMERIC_TYPE_ERROR = "El valor ingresado no posee un formato numérico. Intente de nuevo: ";
+        OUT_OF_RANGE_ERROR = "Opción no disponible. Intente de nuevo: ";
+        ABANDON_GAME = "Has abandonado el juego";
+
+        optionList = new ArrayList<>();
+        actionList = new ArrayList<>();
+
+        alive = true;
     }
 
     /**
@@ -52,12 +68,12 @@ public class Menu {
     /**
      * addOption a user menu given the options it should provide them and the actions associated to each of them.
      * @param option: a text containing one of the menu options.
-     * @param menuActionPrototype: the method that should be executed when selecting the option associated to it.
+     * @param action: the method that should be executed when selecting the option associated to it.
      * @return this: the current menu with its corresponding modifications.
      */
-    public Menu addOption(String option, MenuActionPrototype menuActionPrototype) {
+    public Menu addOption(String option, Action action) {
         optionList.add(option);
-        menuActionPrototypeList.add(menuActionPrototype);
+        actionList.add(action);
         return this;
     }
 
@@ -65,7 +81,7 @@ public class Menu {
      * createMenu adds an exit method at the end of the menu.
      */
     public void addExitOption() {
-        optionList.add("Salir");
+        optionList.add("Abandonar juego.");
     }
 
     /**
@@ -73,14 +89,21 @@ public class Menu {
      */
     public void clearMenu() {
         optionList.clear();
-        menuActionPrototypeList.clear();
+        actionList.clear();
+    }
+
+    /**
+     * killMenu sets that the user menu should stop being shown to the user.
+     */
+    public void killMenu() {
+        alive = false;
     }
 
     /**
      * showMenu displays the options within the menu
      */
     public void showMenu() {
-        System.out.println(MENU_WELCOME);
+        System.out.println(START_MENU);
         for (int i = 0; i < optionList.size(); i++) {
             System.out.println(i + 1 + ") " + optionList.get(i));
         }
@@ -100,13 +123,9 @@ public class Menu {
             try {
                 int option = input.nextInt();
                 input.nextLine();
-                if (option < 0 || option > optionList.size()) {
+                if (option <= 0 || option > optionList.size()) {
                     System.out.print(OUT_OF_RANGE_ERROR);
                     continue;
-                }
-                else if(option == 0){
-                    killMenu();
-                    option = optionList.size();
                 }
                 return option;
             } catch (InputMismatchException e) {
@@ -123,10 +142,10 @@ public class Menu {
     public void executeOption(int option) {
         if (option == optionList.size()) {
             killMenu();
-            System.out.println(END_OF_PROGRAM);
+            System.out.println(ABANDON_GAME);
             return;
         }
-        menuActionPrototypeList.get(option - 1).definedAction();
+        actionList.get(option - 1).definedAction(player, magician);
     }
 }
 
